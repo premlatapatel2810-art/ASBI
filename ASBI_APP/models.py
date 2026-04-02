@@ -11,14 +11,14 @@ class Account(models.Model):
         unique=True,
         null=False
         )
-    Balance = models.DecimalField(decimal_places=2,null=False,unique=False,max_digits=10)
+    Balance = models.DecimalField(decimal_places=2,unique=False,max_digits=10,default=0)
 
 
     Account_choises = [
         ('S', 'Savings'),
         ('C', 'Current')
     ]
-    Account_type = models.CharField(max_length=1,choices=Account_choises,default='S')
+    Account_type = models.IntegerField(max_length=1,choices=Account_choises,default='S')
 
     def __str__(self):
         return self.Username
@@ -36,4 +36,4 @@ class Transaction(models.Model):
         validators=[MinLengthValidator(6)],
         unique=True,
         null=False
-        )
+    )
